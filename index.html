@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="relative">
+        <div class="w-full mx-auto">
+            <div
+                class="w-full h-screen md:px-16 px-10 md:pt-16 pt-10 pb-28 bg-[#EFE6DD] flex-col justify-end items-center lg:gap-28 md:gap-16 gap-10 inline-flex">
+                <div class="flex-col justify-end items-center lg:gap-16 gap-10 flex">
+                    <img src="./image3.png" alt="pagedone logo image" class="2xl:w-72 xl:w-48 lg:w-44 w-[250px]">
+                    <div class="flex-col justify-center items-center gap-10 flex">
+                        <div class="flex-col justify-start items-center sm:gap-2.5 flex">
+                            <h2
+                                class="text-center md:text-[64px] text-[53px] font-bold font-['Open_Sans'] leading-normal">
+                                Coming Soon</h2>
+                        </div>
+                        <div class="flex items-start justify-center w-full gap-2 count-down-main">
+                            <div class="timer flex flex-col gap-0.5">
+                                <div class="">
+                                    <h3
+                                        class="countdown-element days text-center text-[#175594] sm:text-6xl text-5xl font-bold font-manrope leading-9">
+                                    </h3>
+                                </div>
+                                <p class="text-center text-gray-500 text-xs font-normal leading-normal w-full pt-4">DAYS
+                                </p>
+                            </div>
+                            <h3
+                                class="w-3 text-center text-gray-500 sm:text-5xl text-3xl font-medium font-manrope leading-9">
+                                :</h3>
+                            <div class="timer flex flex-col gap-0.5">
+                                <div class="">
+                                    <h3
+                                        class="countdown-element hours text-center text-[#175594] sm:text-6xl text-5xl font-bold font-manrope leading-9">
+                                    </h3>
+                                </div>
+                                <p class="text-center text-gray-500 text-xs font-normal leading-normal w-full pt-4">HRS
+                                </p>
+                            </div>
+                            <h3
+                                class="w-3 text-center text-gray-500 sm:text-5xl text-3xl font-medium font-manrope leading-9">
+                                :</h3>
+                            <div class="timer flex flex-col gap-0.5">
+                                <div class="">
+                                    <h3
+                                        class="countdown-element minutes text-center text-[#175594] sm:text-6xl text-5xl font-bold font-manrope leading-9">
+                                    </h3>
+                                </div>
+                                <p class="text-center text-gray-500 text-xs font-normal leading-normal w-full pt-4">MINS
+                                </p>
+                            </div>
+                            <h3
+                                class="w-3 text-center text-gray-500 sm:text-5xl text-3xl font-medium font-manrope leading-9">
+                                :</h3>
+                            <div class="timer flex flex-col gap-0.5">
+                                <div class="">
+                                    <h3
+                                        class="countdown-element seconds text-center text-[#175594] sm:text-6xl text-5xl font-bold font-manrope leading-9">
+                                    </h3>
+                                </div>
+                                <p class="text-center text-gray-500 text-xs font-normal leading-normal w-full pt-4">SECS
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-full flex-col justify-center items-center gap-5 flex">
+                            <div class="justify-center items-center gap-2.5 flex sm:flex-row flex-col">
+                                <input type="text"
+                                    class="w-80 focus:outline-none px-3.5 py-2 shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] text-gray-900 placeholder-gray-400 text-sm font-normal leading-relaxed h-10 bg-white rounded-lg border border-gray-200 justify-start items-center gap-1.5 inline-flex"
+                                    placeholder="Type your mail...">
+                                <button
+                                    class="sm:w-fit w-full px-3.5 py-2 bg-[#175594] transition-all duration-700 ease-in-out rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex">
+                                    <span
+                                        class="px-1.5 text-white text-sm font-medium leading-6 whitespace-nowrap">Notify
+                                        Me</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let dest = new Date("jan 11, 2025 23:59:59").getTime();
+        let x = setInterval(function () {
+            let now = new Date().getTime();
+            let diff = dest - now;
+            if (diff <= 0) {
+                let nextMonthDate = new Date();
+                nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+
+                if (nextMonthDate.getMonth() === 0) {
+                    nextMonthDate.setFullYear(nextMonthDate.getFullYear() + 1);
+                }
+
+                dest = nextMonthDate.getTime();
+                return;
+            }
+
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+
+            if (days < 10) {
+                days = `0${days}`;
+            }
+
+            if (hours < 10) {
+                hours = `0${hours}`;
+            }
+            if (minutes < 10) {
+                minutes = `0${minutes}`;
+            }
+            if (seconds < 10) {
+                seconds = `0${seconds}`;
+            }
+
+            let countdownElements = document.getElementsByClassName("countdown-element");
+
+            for (let i = 0; i < countdownElements.length; i++) {
+                let className = countdownElements[i].classList[1];
+                switch (className) {
+                    case "days":
+                        countdownElements[i].innerHTML = days;
+                        break;
+                    case "hours":
+                        countdownElements[i].innerHTML = hours;
+                        break;
+                    case "minutes":
+                        countdownElements[i].innerHTML = minutes;
+                        break;
+                    case "seconds":
+                        countdownElements[i].innerHTML = seconds;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }, 10);
+    </script>
+</body>
+
+</html>
